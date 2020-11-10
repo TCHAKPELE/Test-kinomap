@@ -10,7 +10,7 @@
 
 #container .items{
     width: 80%;
-    min-width: 50%;
+    min-width: 25%;
     height: auto;
     background: #ececec;
     position: relative;
@@ -53,18 +53,19 @@
 img{
 	
 	margin: 1% ;
-    width: 50%;
+	width: 25%;
+
 	float: left;
-    height: 50%;
+    height: 25%;
     
 }
 .items img:hover {
 	border-radius: 50%;
     width: 100%;
 	max-width: 500px;
-	height: 100%;
+	height: auto;
+	background-color:white;
 	
-    
 }
 
 .rotate {
@@ -109,7 +110,8 @@ img{
 	background: rgba(214,98,13,.8);
 	width: 0;
 	/* fonction d'animation */
-    animation: timeliner 30s infinite;
+	animation: timeliner 30s infinite;
+	
     
 }
 
@@ -194,7 +196,7 @@ img{
 .play_commands {
 	/* positionnement en haut à droite */ 
 	position: absolute;
-	top: 25px; right: 25px;
+	top: 10px; right: 10px;
 	z-index: 10;
 	/* dimensionnement des icônes */
 	width: 22px;
@@ -218,8 +220,8 @@ img{
 	top:0;
 	width:38%;
 	height: 22px;
-	background: #fff;
-    background: rgba(255,255,255,0.5);
+	background:black;
+    background: black;
     
 }
 .pause:after { right:0; }
@@ -231,13 +233,13 @@ img{
 
  
 .play:hover{
-    width: 1px; 
-	height: 1px; 
+    width: 5px; 
+	height: 5px; 
 	/* les transparentes forment la flèche */
 	border-top: 10px solid transparent;
 	border-bottom: 10px solid transparent;
-	border-left: 20px solid #fff; 
-	border-left: 20px solid rgba(255,255,255,0.5); 
+	border-left: 20px solid black; 
+	border-left: 20px solid black; 
 	/* renseignez 1 pour voir l'icône de suite */
     opacity: 1;
     

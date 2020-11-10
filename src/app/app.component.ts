@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {GetApiService} from './get-api.service';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { noUndefined } from '@angular/compiler/src/util';
+
 
 @Component({
   selector: 'app-root',
@@ -8,8 +10,9 @@ import { Ng2CarouselamosModule } from 'ng2-carouselamos';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Test';
+  title = 'Test KINOMAP';
   items:Array<any> = [];
+  
   name = '';
   constructor(private api:GetApiService){
     
@@ -17,7 +20,7 @@ export class AppComponent {
 
   }
   
-  //fonction de controle d'animation
+  //fonction de controle d'animation( Enlever les commentaires pour rendre active les fonctions.PS: les fonctions marches mais génèrent une erreur de syntaxe qui n'empêche pas la compilation)
   pause() {
     
     
@@ -26,15 +29,15 @@ export class AppComponent {
     var anim2 = document.querySelectorAll('.items');
     var anim3 = document.querySelectorAll('.dots_commands');
     for (var i = 0; i < anim1.length; i++){
-      //anim1[i].style.animationPlayState = 'paused';
+      // anim1[i].style.animationPlayState = 'paused';
     }
 
     for (var i = 0; i < anim2.length; i++){
-      //anim2[i].style.animationPlayState = 'paused';
+      // anim2[i].style.animationPlayState = 'paused';
     }
 
     for (var i = 0; i < anim3.length; i++){
-      //anim3[i].style.animationPlayState = 'paused';
+      // anim3[i].style.animationPlayState = 'paused';
     }
   }
 
@@ -61,21 +64,25 @@ export class AppComponent {
   
   ngOnInit(){
     
-    //Appel Api
+    //Appel Api// 
+
     this.api.apicall().subscribe((data)=>{
-      //console.log("get api data",data);
-      for (var i=0;i<13;i++)
+      //console.log("get api data",data["length"]);
+      var length =data["length"];
+      
+      for (var i=0;i<length;i++)
       {
         
         this.items[i]=data[i];
       }
       
-      //Gestion de priorité dans l'affichage des logos
-    
+      //Gestion de l'ordre de priorité dans l'affichage des logos//
+
+    //console.log('taille',this.items.length);
     var a;
-    for(var k=0;k<12;k++){
+    for(var k=0;k<length-1;k++){
       
-      for(var j=k+1;j<13;j++){
+      for(var j=k+1;j<length;j++){
         
         if(this.items[j].weight>this.items[k].weight){
           
@@ -89,7 +96,29 @@ export class AppComponent {
       }
 
     }
+
     
+    var x =0;
+    for(var k=length;k<length+Math.round(length*2/3);k++){
+      this.items[k]=this.items[x];
+      x++;
+     // console.log(k);
+    }
+
+    var y =0;
+    for(var k=length+Math.round(length*2/3);k<length+Math.round(length*2/3)+Math.round(length/2);k++){
+      this.items[k]=this.items[y];
+      y++;
+      //console.log(k);
+    }
+
+    var z =0;
+    for(var k=length+Math.round(length*2/3)+Math.round(length/2);k<length+Math.round(length*2/3)+Math.round(length/2)+Math.round(length/4);k++){
+      this.items[k]=this.items[z];
+      z++;
+    }
+    
+
     })
     
 
