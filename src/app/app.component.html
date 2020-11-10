@@ -1,0 +1,55 @@
+
+
+<div style="text-align: center;">
+<h1>{{title}}</h1>
+</div>
+
+<section id="container">
+
+  <div
+  ng2-carouselamos
+  [width]="900"
+  [items]="items"
+  [$item]="item"
+  [$prev]="prevTemplate"
+  [$next]="nextTemplate"
+  
+></div>
+
+
+
+<ng-template #prevTemplate>
+  <img src="assets/image/arrow_left.png" id="left">
+</ng-template>
+
+<ng-template #nextTemplate id="b">
+<img src="assets/image/arrow_right.png" id="right">
+</ng-template>
+
+
+<ng-template let-item let-i="index" #item id="button">
+  
+  <button type="button" class="play_commands pause" title="Mettre en pause" id="sl_play" (click)="pause();">Pause</button>
+  <button type="button" class="play_commands play" title="Declencher l'animation " id="sl_pause" (click)="play();">Play</button>
+  <div class="items" >
+    
+    <figure>
+      <img src="{{ item.image }}" class="rotate">
+    </figure>
+    
+  </div>
+</ng-template>
+
+
+  
+
+
+<ul class="dots_commands"><!--
+--><li><a title="Afficher la slide 1" href="#sl_i1">Slide 1</a></li><!--
+--><li><a title="Afficher la slide 2" href="#sl_i2">Slide 2</a></li><!--
+--><li><a title="Afficher la slide 3" href="#sl_i3">Slide 3</a></li><!--
+--><li><a title="Afficher la slide 4" href="#sl_i4">Slide 4</a></li>
+</ul>
+<span class="timer" id="timeline"></span>
+
+</section>

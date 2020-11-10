@@ -1,0 +1,258 @@
+
+    #container {
+    widows: 100%;
+    margin: 5em auto;
+    padding: 0;
+	background: #fff;
+	
+    
+}
+
+#container .items{
+    width: 80%;
+    min-width: 50%;
+    height: auto;
+    background: #ececec;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+	overflow: hidden;
+	
+    
+}
+
+
+
+#container figure {
+	position: relative;
+	width:100%;
+    padding:0; margin:0;
+	font-size: 0;
+	
+	
+}
+
+
+
+#left{
+    margin: 40%;
+	width: 10%;
+	height: auto;
+
+}
+
+#right{
+
+	margin: 40%;
+	width: 10%;
+	height: auto;
+
+}
+
+img{
+	
+	margin: 1% ;
+    width: 50%;
+	float: left;
+    height: 50%;
+    
+}
+.items img:hover {
+	border-radius: 50%;
+    width: 100%;
+	max-width: 500px;
+	height: 100%;
+	
+    
+}
+
+.rotate {
+	
+	-webkit-transition: all 0.5s ease-in-out;
+	  -moz-transition: all 0.5s ease-in-out;
+	  -o-transition: all 0.5s ease-in-out;
+	  transition: all 0.5s ease-in-out;
+  }
+  
+  .rotate:hover {
+	-webkit-transition: all 1s ease-in-out;
+	  -moz-transition: all 1s ease-in-out;
+	  -o-transition: all 1s ease-in-out;
+	  transition: all 1s ease-in-out;
+  }
+@keyframes items {
+	0%, 10%	        { left: 0 ;}
+	15%, 25%		{ left: -100% ;}
+	30%, 40%		{ left: -200% ;}
+	45%, 55%		{ left: -300% ;}
+    60%, 70%		{ left: -400% ;}
+	75%,85%         { left: -500%;}
+	90%,95%           { left: -600%;}
+	100%{ left: -750% ;}
+}
+
+#container .items {
+	/* ... avec la propriété animation */
+    animation: items 30s infinite;
+    
+    
+}
+.timer {
+
+	position: absolute;
+	background: #999;
+	bottom: 30%;
+	left: 40%;
+	height: 5px;
+	background: rgb(214,98,13);
+	background: rgba(214,98,13,.8);
+	width: 0;
+	/* fonction d'animation */
+    animation: timeliner 30s infinite;
+    
+}
+
+
+
+@keyframes timeliner {
+	0%, 15%, 30%, 45%,60%, 75%,90% ,100%	{ width: 0;		}
+	10%, 25%, 40%, 55%,70%,85%, 95%		{ width: 20%;	}
+}
+
+.dots_commands  {
+	padding:0;
+	margin:32px 0 0;
+	text-align: center;
+}
+.dots_commands li {
+	display: inline;
+	padding:0; margin:0;
+}
+.dots_commands a {
+	position: relative;
+	display: inline-block;
+	height:8px; width: 8px;
+	margin: 0 5px;
+	text-indent: -9999px;
+	background: #fff;
+ 
+	border-radius: 50%;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.55) inset;
+
+}
+.dots_commands a:focus { 
+	outline: none;
+	background: orange;
+}
+.dots_commands li:first-child a { z-index: 25; }
+.dots_commands li:first-child a:after,
+.dots_commands li:first-child a:before {
+	position: absolute;
+	top: 0; left: 0;
+	content: " ";
+	width: 8px; height: 8px;
+	background: #bd9b83;
+	z-index:20;
+
+	border-radius: 50%;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.55) inset;
+}
+/* on anime "after" */
+.dots_commands li:first-child a:after {
+	
+	animation: dotser 30s infinite;
+	
+}
+/* on cache "before", on l'utilise uniquement au clic (cf. bonux précédent) */
+.dots_commands li:first-child a:before { display:none; }
+ 
+/* c'est parti pour l'animation ! */
+@keyframes dotser {
+	0%, 100% 	{ opacity: 1; left: 0; 		}
+ 		
+	20%			{ opacity: 1; left: 0;		}
+	22%			{ opacity: 0; left: 0;		}
+	23%			{ opacity: 0; left: 18px;	}
+	25%			{ opacity: 1; left: 18px;	}
+ 		
+	45%			{ opacity: 1; left: 18px;	background: red;}
+	47%			{ opacity: 0; left: 18px;	}
+	48%			{ opacity: 0; left: 36px;	}
+	50%			{ opacity: 1; left: 36px;	background:blue;}
+ 		
+	70%			{ opacity: 1; left: 36px;	}
+	72%			{ opacity: 0; left: 36px;	}
+	73%			{ opacity: 0; left: 54px;	}
+	75%			{ opacity: 1; left: 54px;	background:green;}
+ 		
+	95%			{ opacity: 1; left: 54px;	}
+	97%			{ opacity: 0; left: 54px;	}
+	98%			{ opacity: 0; left: 0;	}
+}
+
+.play_commands {
+	/* positionnement en haut à droite */ 
+	position: absolute;
+	top: 25px; right: 25px;
+	z-index: 10;
+	/* dimensionnement des icônes */
+	width: 22px;
+	height: 22px;
+	text-indent: -9999px;
+	border:0 none;
+	/* placez l'opacité à 1 si vous souhaitez voir les commandes */
+	opacity: 0;
+	/* préparation de transition sur opacicty et right */
+	transition: opacity 1s, right 1s;
+}
+/* on décale play légèrement sur la gauche */
+.play { right: 55px; cursor: default; }
+ 
+/* création de l'icône pause avec 2 pseudos éléments */
+.pause:after,
+.pause::before{
+	position: absolute;
+	display: block;
+	content: " ";
+	top:0;
+	width:38%;
+	height: 22px;
+	background: #fff;
+    background: rgba(255,255,255,0.5);
+    
+}
+.pause:after { right:0; }
+.pause:before {	left:0; }
+
+
+/* création de l'icône play avec des bordures */
+
+
+ 
+.play:hover{
+    width: 1px; 
+	height: 1px; 
+	/* les transparentes forment la flèche */
+	border-top: 10px solid transparent;
+	border-bottom: 10px solid transparent;
+	border-left: 20px solid #fff; 
+	border-left: 20px solid rgba(255,255,255,0.5); 
+	/* renseignez 1 pour voir l'icône de suite */
+    opacity: 1;
+    
+    
+    }
+/* apparition du bouton pause au survole */
+/* apparition des boutons au focus */
+
+
+.pause:hover{
+    opacity: 1;
+	outline: none;
+
+}
+
+
+
+
